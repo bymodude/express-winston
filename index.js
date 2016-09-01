@@ -224,7 +224,7 @@ function logger(options) {
                   var isJson = (res._headers && res._headers['content-type']
                     && res._headers['content-type'].indexOf('json') >= 0);
 
-                  meta.res.body =  isJson ? JSON.parse(chunk) : chunk.toString();
+                  meta.res.body =  isJson ? JSON.parse(chunk) : ((chunk.toString().length > 4096) ? (chunk.toString().substring(0, 4096) + '...TRUNCATED at 4K') : chunk.toString());
                 }
               }
 
